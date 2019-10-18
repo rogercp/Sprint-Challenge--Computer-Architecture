@@ -41,5 +41,32 @@ class CPU:
     def ram_write(self, mar, mdr):
         self.ram[mar] = mdr
 
+    def alu(self, op_code, reg_a, reg_b):
+        """ALU operations."""
+
+        if op_code == "ADD":
+            self.reg[reg_a] += self.reg[reg_b]
+        elif op_code == "MUL":
+            self.reg[reg_a] = self.reg[reg_a] * self.reg[reg_b]
+        elif op_code == "AND":
+            self.reg[reg_a] = self.reg[reg_a] & self.reg[reg_b]
+        elif op_code == "DEC":
+            self.reg[reg_a] -= 1
+        elif op_code == "INC":
+            self.reg[reg_a] += 1
+        elif op_code == "CMP":
+            if self.reg[reg_a] == self.reg[reg_b]:
+                self.fl[self.e] = 1
+            else:
+                self.fl[self.e] = 0
+        elif op_code == "MOD":
+            self.reg[reg_a] = self.reg[reg_a] % self.reg[reg_b]
+        elif op_code == "DIV":
+            if self.reg[reg_b] != 0:
+                self.reg[reg_a] = self.reg[reg_a] / self.reg[reg_b]
+            else:
+                self.halt()
+        else:
+            raise Exception("Unsupported ALU operation")
 
     
