@@ -1,4 +1,4 @@
-import sus 
+import sys 
 import re
 
 class CPU:
@@ -127,7 +127,7 @@ class CPU:
                 self.alu("MUL", operand_a, operand_b)
                 print(self.reg[operand_a])
             elif command == ADD:
-                self.alu("ADD", operand_, operand_b)
+                self.alu("ADD", operand_a, operand_b)
             elif command == AND:
                 self.alu("AND", operand_a, operand_b)
             elif command == LD:
